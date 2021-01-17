@@ -1,5 +1,6 @@
 package com.travelers.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,6 +34,9 @@ public class HomePage {
 
     @FindBy(xpath = "//button[text()=' Search']")
     private WebElement searchButton;
+
+    @FindBy(xpath = "//table[@class='bgwhite table table-striped']")
+    private WebElement resultsTable;
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -71,4 +75,14 @@ public class HomePage {
         searchButton.click();
 
     }
+
+
+    public void getHotelNames() {
+        List<WebElement> hotelNames = resultsTable.findElements(By.xpath(".//h4//b"));
+        for (WebElement hotelName : hotelNames) {
+            System.out.println(hotelName.getText());
+        }
+    }
+
+
 }
