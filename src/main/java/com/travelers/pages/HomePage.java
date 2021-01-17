@@ -1,5 +1,6 @@
 package com.travelers.pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,13 +16,59 @@ public class HomePage {
     @FindBy(xpath = "//div[@id='select2-drop']//input")
     private WebElement searchCityInput;
 
+    @FindBy(name = "checkin")
+    private WebElement checkInInput;
+
+    @FindBy(name = "checkout")
+    private WebElement checkOutInput;
+
+    @FindBy(id = "travellersInput")
+    private WebElement travellersInput;
+
+    @FindBy(id = "adultPlusBtn")
+    private WebElement adultPlusBtn;
+
+    @FindBy(id = "childPlusBtn")
+    private WebElement childPlusBtn;
+
+    @FindBy(xpath = "//button[text()=' Search']")
+    private WebElement searchButton;
+
     public HomePage(WebDriver driver) {
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
-    public void sendKeysToCityInput(String cityName){
+    public void setCityHotel(String cityName) throws InterruptedException {
         searchSpan.click();
         searchCityInput.sendKeys(cityName);
+        Thread.sleep(2000);
+        searchCityInput.sendKeys(Keys.ENTER);
     }
 
+    public void setDateRange(String checkInDate, String checkOutDate) {
+        checkInInput.sendKeys(checkInDate);
+        checkOutInput.sendKeys(checkOutDate);
+        checkOutInput.click();
+
+    }
+
+    public void clickOnTravelersModal() throws InterruptedException {
+        travellersInput.click();
+        Thread.sleep(2000);
+    }
+
+    public void addAdult(){
+        adultPlusBtn.click();
+
+    }
+
+    public void addChild()  {
+        childPlusBtn.click();
+
+    }
+
+    public void performSearch(){
+        searchButton.click();
+
+    }
 }
