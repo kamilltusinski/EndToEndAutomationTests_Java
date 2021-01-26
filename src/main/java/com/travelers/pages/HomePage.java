@@ -11,7 +11,7 @@ import java.util.List;
 
 public class HomePage {
 
-    @FindBy(xpath = "//span[text()='Search by Hotel or City Name']")
+    @FindBy(css = "[class='select2-choice'][href='javascript:void(0)']")
     private WebElement searchSpan;
 
     @FindBy(xpath = "//div[@id='select2-drop']//input")
